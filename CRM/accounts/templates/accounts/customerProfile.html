@@ -1,0 +1,69 @@
+{% extends 'accounts/main.html' %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="card p-4 shadow-lg border-0">
+        <h2 class="text-center mb-4 text-primary">My Profile</h2>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success text-center">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="text-center">
+            <div class="profile-img-container mb-3">
+                {% if request.user.customer.profile_picture %}
+                    <img src="{{ request.user.customer.profile_picture.url }}" class="rounded-circle shadow-lg" width="150">
+                {% else %}
+                    <img src="https://via.placeholder.com/150" class="rounded-circle shadow-lg">
+                {% endif %}
+            </div>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data" class="p-3">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label class="font-weight-bold">Full Name</label>
+                {{ form.name }}
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold">Email</label>
+                {{ form.email }}
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold">Phone</label>
+                {{ form.phone }}
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold">Address</label>
+                {{ form.address }}
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold">Profile Picture</label>
+                <div class="custom-file">
+                    {{ form.profile_picture }}
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-success px-4 mt-3">Update Profile</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .profile-img-container img {
+        width: 150px;
+        height: 150px;
+        border: 4px solid #007bff;
+        padding: 5px;
+    }
+    .form-group label {
+        color: #333;
+    }
+</style>
+
+{% endblock %}

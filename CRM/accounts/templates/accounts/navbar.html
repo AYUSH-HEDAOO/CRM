@@ -10,14 +10,23 @@
           <a class="nav-link" href="#">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Products</a>
+          <a class="nav-link" href="accounts/Product.html">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
+          <a class="nav-link" href="accounts/customer.html">customer</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>
       </ul>
     </div>
+    <span style="color: blue; font-weight: bold; font-size: 18px; margin-right: 10px;">
+      Hello, {{ request.user }}
+  </span>
+  
+  <span>
+      <a href="{% url 'logout' %}" style="color: red; text-decoration: none; font-weight: bold;">
+          Logout
+      </a>
+  </span>
   </nav>
